@@ -1,0 +1,57 @@
+package com.javase.test.Collection;
+
+import java.util.*;
+
+public class Maptest {
+    public static void main(String[] args) {
+    //创建一个HasMap集合，并尝试用两种方法遍历，并且限制键的数据类型为Integer，值的数据类型为String
+     Map<Integer,String> map=new HashMap<>();
+     //往map集合里边添加元素
+     map.put(1,"张三");
+     map.put(2,"李四");
+     map.put(3,"王五");
+     //遍历map集合
+     //获取所有的key来遍历value
+     Set<Integer> s=map.keySet();
+     //利用迭代器遍历Map集合
+        /* Iterator<Integer> iterator=s.iterator();
+        while (iterator.hasNext()){
+            Integer key=iterator.next();
+            String value=map.get(key);
+            System.out.println(key+"="+value);
+        }*/
+        //利用foreach增强
+       /* for(Integer i :s){
+            System.out.println(i+"="+map.get(i));
+        }*/
+        //第二种方法
+        //把Hasmap集合转换为Set集合,此时的Set集合数据类型为Map.Entry<Integer,String>
+        Set <Map.Entry<Integer,String>> set=map.entrySet();
+        //创建迭代器对象
+        Iterator<Map.Entry<Integer,String>> it=set.iterator();
+       while (it.hasNext()){
+            Map.Entry<Integer,String >m=it.next();
+            Integer i=m.getKey();
+            String str1=m.getValue();
+           System.out.println(i+"="+str1);
+        }
+       for(Map.Entry<Integer ,String>m1:set){
+           System.out.println(m1.getKey()+"-->"+m1.getValue());
+        }
+
+        }
+
+    }
+    /*
+    Map接口中的常用方法
+    1.V put(K key, V value)向实现Map接口的集合中添加元素
+    2.V get(Object key)  通过key来获取value
+    3.V Claean()      清空实现Map接口的集合
+    4.boolean ContainKey(Object key)  判断实现Map接口的集合中是否包含某个key
+    5.boolean COntainValue(Object Valule)判断实现Map接口的集合中是否包含某个value
+    6.boolean isEmpty()  判断实现Map接口的集合中的元素个数是否为0
+    7.V remove(Object Key) 通过Key删除键值对
+    8.Collection<V> values()  获取实现Map接口的集合中的所有value值并返回一个Collection
+    9.Set <K> keySet() 获取集合所有的key值，key值构成一个Set集合
+    */
+

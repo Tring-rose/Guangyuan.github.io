@@ -1,0 +1,41 @@
+package com.javase.test.IOcodetest;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class IOcoede01 {
+    public static void main(String[] args) {
+        FileInputStream fip=null;//创建一个输入流文件进行文件的读取
+        try {
+            //实例化FileInput对象,并赋予路径
+            fip=new FileInputStream("E:\\java code\\src\\com\\javase\\test\\IOcodetest\\code");
+            //创建一个byte类型的数组进行对文件的读取
+            byte[] bytes=new byte[120];
+           int recount=0;//创建recount变量，作为是否读取完文件的判断因素
+           while(true){
+               try {
+                   //读取完问价里面的内容，跳出循环
+                   if (((recount=fip.read(bytes))==-1)) break;
+                   //进行一边读一边把byte数组转换成字符串进行输出
+                   else System.out.println(new String (bytes,0,recount));
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
+
+           }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        //最后进行对文件的关闭
+        finally{
+            if (fip == null) {
+                try {
+                    fip.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
